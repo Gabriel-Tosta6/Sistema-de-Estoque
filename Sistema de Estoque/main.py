@@ -1,5 +1,5 @@
 lista_produtos = []
-#Cadastro de produto
+
 def cadastrar_produtos(lista_produtos):
     print("\n--- Cadastro de Produtos ---")
     while True:
@@ -24,7 +24,7 @@ def cadastrar_produtos(lista_produtos):
         except:
             print('\nNão foi possível cadastrar o produto, tente novamente!\n')
 
-#Lista de Produtos    
+
 def lista(lista_produtos):
     print("\n--- Lista de Produtos Cadastrados ---\n")
     if not lista_produtos:
@@ -43,7 +43,7 @@ def lista(lista_produtos):
     print(f"Valor total do estoque: R$ {valor_total_estoque:.2f}")
     print("-" * 28)
 
-#Buscar produtos
+
 def buscar_produto(lista_produtos):
     print("\n--- Buscar Produtos ---")
     while True:
@@ -57,14 +57,14 @@ def buscar_produto(lista_produtos):
                     
             if produto_encontrado is not None:
                 print(f'{'Código':<10} {'Nome':<20} {'Preço':<8}   {'Quantidade':<5}')
-                print(f"{produto_procurado['codigo']:<10} {produto_procurado['nome']:<20} R${produto_procurado['preco']:<8.2f} {produto_procurado['quantidade']:<5}")
+                print(f"{produto_encontrado['codigo']:<10} {produto_encontrado['nome']:<20} R${produto_encontrado['preco']:<8.2f} {produto_encontrado['quantidade']:<5}")
                 break  
             else:
                 print('\nNão há nenhum produto com esse código, tente novamente!\n')
         except:
             print('\nAlgo deu errado, tente novamente!\n')
 
-#Função Alterar Produto:
+
 def alterar_produto(lista_produtos):
     print("\n--- Alterar Produtos ---")
     while True:
@@ -96,12 +96,14 @@ def alterar_produto(lista_produtos):
                             produto_procurado['quantidade'] = qtde_nova
                             print('\nA quantidade do produto foi alterada!\n')
                             return
+                        case _:
+                            print('Opção invalida inserida,tente novamente!')
                 else:
                     print('\nNão há nenhum produto com esse código, tente novamente!\n')
         except:
             print('\nAlgo deu errado, tente novamente!\n')
 
-#Função Remover Produto
+
 def remover_produto(lista_produtos):
     print("\n--- Remover Produtos ---")
     while True:
@@ -120,11 +122,13 @@ def remover_produto(lista_produtos):
                     lista_produtos.remove(produto_encontrado)
                     print("\nProduto removido com sucesso!\n")
                     return
-                else:
+                elif confirmação == 'N':
                     print('\nOperação de remoção cancelada.\n')
                     return
+                else:
+                    print('\nOpção invalida inserida.\n')
             else:
                 print('\nProduto com este código não foi encontrado.\n')
 
         except:
-            print('\nErro: Por favor, digite um código válido (número inteiro).\n')
+            print('\nPor favor, digite um código válido.\n')

@@ -17,36 +17,39 @@ ARQUIVO_DE_DADOS = 'estoque.json'
 estoque = carregar_dados(ARQUIVO_DE_DADOS)
 
 while True:
-    print('''\n--- Sistema de Controle de Estoque ---
-1- Cadastrar produto
-2- Listar produtos
-3- Consultar produto por código
-4- Alterar produto
-5- Remover produto
-6- Sair''')
-    
-    opcao = input("Escolha uma opção: ")
-
-    match opcao:
-        case '1':
-            cadastrar_produtos(estoque)
-
-        case '2':
-            lista(estoque)
-
-        case '3':
-            buscar_produto(estoque)
-
-        case '4':
-            alterar_produto(estoque)
-
-        case '5':
-            remover_produto(estoque)
-
-        case '6':
-            print("Salvando dados antes de sair...")
-            salvar_dados(estoque, ARQUIVO_DE_DADOS)
-            print("Dados salvos. Até logo!")
-            break
-        case _:
-            print("Opção inválida. Por favor, tente novamente.")
+    print('''\n===Menu de estoque===
+1. Cadastrar produto
+2. Lista de produtos
+3. Consultar produto por código
+4. Alterar produto
+5. Remover produto
+6. Sair
+      ''')
+    try:
+        escolha=int(input('Escolha uma opção para prosseguir:\n'))
+        match escolha:
+            case 1:
+                cadastrar_produtos(estoque)
+            case 2:
+                lista(estoque)
+            case 3:
+                buscar_produto(estoque)
+            case 4:
+                alterar_produto(estoque)
+            case 5:
+                remover_produto(estoque)
+            case 6:
+                sair=input('Você realmente deseja sair? Digite S para sim e N para não\n').lower()
+                if sair == 's':
+                    print('Salvando alterações no estoque...')
+                    salvar_dados(estoque, ARQUIVO_DE_DADOS)
+                    print('Dados salvos. Até logo!\nPrograma finalizado')
+                    break
+                elif sair == 'n':
+                    print('Operação cancelada.')
+                else:
+                    print('Opção inválida inserida, tente novamente!')
+            case _:
+                print("Opção inválida. Por favor, tente novamente.")
+    except:
+        print('Digite um número inteiro de 1 a 6 para escolher a opção.')
